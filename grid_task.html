@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Task</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            background-color: aliceblue;
+            /* background-color: indigo */
+        }
+        #grid{
+            display:grid;
+            height: 500px;
+            width: 500px;
+            gap:2px;
+        }
+        .box{
+            aspect-ratio: 1/1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <button id="startbtn">START</button>
+    <p id="timer">Time:</p>
+    <p id="scorenum"></p>
+    <div id="grid"></div>
+    </div>
+    <script>
+
+        let timeLeft=11;
+        let timeInterval;
+        // let gameActive = false;
+
+        let score = 0;
+        let size=2;
+        const grid = document.getElementById("grid");
+        const scoreDisplay = document.getElementById("scorenum");
+        const timerDisplay = document.getElementById("timer");
+
+
+        function randomColor(){
+            const colors = ["pink","blue","green","indigo","brown","yellow"] 
+
+            return colors[Math.floor(Math.random()* colors.length)]
+        }
+
+        function generategrid(){
+            grid.innerHTML = " ";
+
+            const color = randomColor();
+            grid.style.gridTemplateColumns = `repeat(${size},1fr)`
+            const total = size*size;
+            const darkIndex = Math.floor(Math.random() * total)
+
+            for (let i = 0; i < total; i++) {
+                const box = document.createElement("div");
+                box.className = "box";
+                box.style.backgroundColor = color;
+              
+                scoreDisplay.innerHTML = `Score ${score}`;
+
+                if(i==darkIndex){
+                    box.style.filter = "brightness(40%)";
+
+                    setTimeout(function(){
+                    box.style.filter = "brightness(100%)";
+                    },500)
+
+
+                    box.onclick=function(){
+                        size++;
+                        score++;
+                        generategrid();
+                    }
+                }
+                grid.appendChild(box);
+            }
+        }
+               
+        function setTimer(){
+               timeInterval =  setInterval(()=>{
+                    timeLeft--;
+                timerDisplay.innerHTML = `${timeLeft}`;
+
+                if(timeLeft<=0){
+                    clearInterval(timeInterval);
+                    alert("Game Over");
+                    grid.innerHTML = ''
+                }
+
+                },1000)
+
+                
+            }
+            function startgame(){
+                // console.log("hiii");
+                
+                const start = document.getElementById("startbtn");
+                start.onclick = function(){
+                    score = 0;
+                    size=2;
+                    timeLeft = 11;
+
+                    timerDisplay.innerHTML = `Time: ${timeLeft}`;
+                    scoreDisplay.innerHTML = `Score: ${score}`;
+
+                    clearInterval(timeInterval);
+                    generategrid();
+                    setTimer();
+                }
+            }
+    startgame();
+        // generategrid();
+    </script>
+</body>
+</html>

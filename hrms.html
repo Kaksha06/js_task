@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HRMS</title>
     <style>
-    
+ 
       button {
         border: none;
         height: 50px;
@@ -45,7 +45,7 @@
       <p id="checkoutText"></p>
     </div>
     <script>
-      const colorbtns = ["checkin", "breakin", "breakout", "checkout"];
+    //   const colorbtns = ["checkin", "breakin", "breakout", "checkout"];
        const logs = {
         checkin: document.getElementById("checkinText"),
         breakin: document.getElementById("breakinText"),
@@ -62,6 +62,7 @@
       function checkin() {
         change.ch.style.opacity = 0.3;
         change.bk.style.opacity = 1;
+        change.co.style.opacity = 1
 
         const checktext = document.getElementById("checkinText")
         console.log(checktext);
@@ -77,9 +78,10 @@
         change.bo.style.opacity = 1;
         change.ch.style.opacity = 0.3;
         change.bk.style.opacity = 0.3;
+        change.co.style.opacity = 0.3
 
         change.ch.disabled = true;
-        change.co.disabled = true;
+        // change.co.disabled = true;
         change.bo.disabled = false;
 
        if(logs.breakin.innerHTML = `break in at ${getCurrentTime()}`) {
@@ -88,17 +90,12 @@
       }
       function breakout() {
         change.bo.style.opacity = 0.3;
-        change.ch.style.opacity = 1;
+        // change.ch.style.opacity = 1;
         change.co.style.opacity = 1;
-       
-        change.ch.disabled = true;
         logs.breakout.innerHTML = `break out at ${getCurrentTime()}`
       }
       function checkout() {
-       
         logs.checkout.innerHTML = `checkout at ${getCurrentTime()}`
-            change.co.disabled = true
-        
       }
       function getCurrentTime() {
         const now = new Date();

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic light task</title>
+    <style>
+
+      table {
+        height: 600px;
+        width: 600px;
+        border-collapse: collapse;
+        border: 3px solid black;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .btn {
+        height: 37px;
+        width: 61px;
+        border-radius: 30px;
+      }
+      td {
+        height: 150px;
+        width: 150px;
+        border: 2px solid black;
+      }
+      body
+        > table:nth-child(1)
+        > tbody:nth-child(1)
+        > tr:nth-child(1)
+        > td:nth-child(2) {
+        border-bottom: none;
+      }
+      body
+        > table:nth-child(1)
+        > tbody:nth-child(1)
+        > tr:nth-child(2)
+        > td:nth-child(2) {
+        border: none;
+      }
+      body
+        > table:nth-child(1)
+        > tbody:nth-child(1)
+        > tr:nth-child(2)
+        > td:nth-child(3) {
+        border-left: none;
+      }
+      body
+        > table:nth-child(1)
+        > tbody:nth-child(1)
+        > tr:nth-child(3)
+        > td:nth-child(2) {
+        border-top: none;
+      }
+      body
+        > table:nth-child(1)
+        > tbody:nth-child(1)
+        > tr:nth-child(2)
+        > td:nth-child(1) {
+        border-right: none;
+      }
+      .green {
+        background-color: green;
+        opacity: 0.4;
+      }
+      .red {
+        background-color: red;
+        /* opacity: 0.4; */
+      }
+      .yellow {
+        background-color: yellow;
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+  <body>
+        <!-- <button id="startbtn" onclick="startsignal()">Start</button> -->
+    <table>
+      <tr>
+        <td></td>
+        <!-- north -->
+        <td style="vertical-align: bottom">
+          <button class="btn green" id="ng"></button>
+          <button class="btn yellow" id="ny"></button>
+          <button class="btn red" id="nr"></button>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <!-- west -->
+        <td align="right" valign="center">
+          <button class="btn green" id="wg"></button><br /><br />
+          <button class="btn yellow" id="wy"></button><br /><br />
+          <button class="btn red" id="wr"></button>
+        </td>
+        <td></td>
+        <!-- east -->
+        <td align="left" valign="center">
+          <button class="btn green" id="eg"></button><br /><br />
+          <button class="btn yellow" id="ey"></button><br /><br />
+          <button class="btn red" id="er"></button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <!-- south -->
+        <td style="vertical-align: top">
+          <button class="btn green" id="sg"></button>
+          <button class="btn yellow" id="sy"></button>
+          <button class="btn red" id="sr"></button>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+    <button id="startbtn" onclick="startsignal()">Start</button>
+    <script src="signal.js"></script>
+  </body>
+</html>
