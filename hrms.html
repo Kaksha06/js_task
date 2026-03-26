@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRMS</title>
+    <style>
+    
+      button {
+        border: none;
+        height: 50px;
+        width: 100px;
+        margin: 10px;
+        cursor: pointer;
+      }
+      #checkin {
+        background-color: rgb(27, 218, 27);
+        opacity: 1;
+      }
+      #breakin {
+        background-color: yellow;
+        opacity: 0.3;
+      }
+      #breakout {
+        background-color: orange;
+        opacity: 0.3;
+      }
+      #checkout {
+        background-color: red;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <button type="button" id="checkin" onclick="checkin()">Check In</button>
+      <button id="breakin" onclick="breakin()">Break In</button>
+      <button id="breakout" onclick="breakout()">Break Out</button>
+      <button id="checkout" onclick="checkout()">Check Out</button>
+    </div>
+    <div class="textlogs">
+      <p id="checkinText"></p>
+      <p id="breakinText"></p>
+      <p id="breakoutText"></p>
+      <p id="checkoutText"></p>
+    </div>
+    <script>
+      const colorbtns = ["checkin", "breakin", "breakout", "checkout"];
+       const logs = {
+        checkin: document.getElementById("checkinText"),
+        breakin: document.getElementById("breakinText"),
+        breakout: document.getElementById("breakoutText"),
+        checkout: document.getElementById("checkoutText"),
+      };
+      const change = {
+        ch: document.getElementById("checkin"),
+        bk: document.getElementById("breakin"),
+        bo: document.getElementById("breakout"),
+        co: document.getElementById("checkout"),
+      };
+     
+      function checkin() {
+        change.ch.style.opacity = 0.3;
+        change.bk.style.opacity = 1;
+
+        const checktext = document.getElementById("checkinText")
+        console.log(checktext);
+        
+        logs.checkin.innerHTML = `checked in at ${getCurrentTime()}`
+
+        
+       
+        change.bo.disabled = true;
+      }
+      function breakin() {
+        change.bk.style.opacity = 1;
+        change.bo.style.opacity = 1;
+        change.ch.style.opacity = 0.3;
+        change.bk.style.opacity = 0.3;
+
+        change.ch.disabled = true;
+        change.co.disabled = true;
+        change.bo.disabled = false;
+
+       if(logs.breakin.innerHTML = `break in at ${getCurrentTime()}`) {
+         change.bk.disabled = true;  
+       }
+      }
+      function breakout() {
+        change.bo.style.opacity = 0.3;
+        change.ch.style.opacity = 1;
+        change.co.style.opacity = 1;
+       
+        change.ch.disabled = true;
+        logs.breakout.innerHTML = `break out at ${getCurrentTime()}`
+      }
+      function checkout() {
+       
+        logs.checkout.innerHTML = `checkout at ${getCurrentTime()}`
+            change.co.disabled = true
+        
+      }
+      function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString();
+      }
+    </script>
+  </body>
+</html>

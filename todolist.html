@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+</head>
+<body>
+    
+    <h2>To do List</h2>
+    <label for="inputlist">Add to do list</label>
+    <input type="text" id="addlist">
+    <ul id="tasklist">
+    </ul>
+    <button type="submit" onclick="addTask()">Add</button>
+
+    <script>
+        function addTask(){
+            const inputValue = document.getElementById("addlist");
+            const removeBtn = document.createElement("button");
+            removeBtn.innerHTML = "Remove"
+            removeBtn.addEventListener("click", () => removeList(removeBtn))
+            const tasklist = document.getElementById("tasklist")
+            // console.log(inputValue);
+            const list = document.createElement("li");
+            list.textContent = inputValue.value;
+            list.appendChild(removeBtn);
+            inputValue.value = '';
+            tasklist.appendChild(list);    
+        }
+        function removeList(removeBtn){
+            const removeTask = removeBtn.closest("li")
+            removeTask.remove();
+        }
+    </script>
+</body>
+</html>
